@@ -671,9 +671,6 @@ a {
   background-color: #c2c1ba;
   font-size: large;
   letter-spacing: 2px;
-  bottom: -10000px;
-  -webkit-animation: moveUp 5000ms 2s 1 forwards;
-          animation: moveUp 5000ms 2s 1 forwards;
 }
 
 #login-btn:hover {

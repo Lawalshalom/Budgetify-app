@@ -41,7 +41,7 @@ export default function Navbar() {
     })
 
         return (
-            <div>
+            <div data-aos="fade-up">
                <header>
         <div className="toggle-btn">
             <div className="toggle-bar-1 box"></div>

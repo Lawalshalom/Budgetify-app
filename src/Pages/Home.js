@@ -8,7 +8,7 @@ return (
     <div>
         <Navbar />
         <section id="home">
-            <div className="introduction">
+            <div className="introduction" data-aos="fade-right">
                 <h4><strong>Manage and Control Your Expenditure</strong></h4>
                 <p>From budgets to bills and  many more,
                      you’ll discover the effortless way
@@ -19,7 +19,7 @@ return (
                     <div className="Login"><Link to="/login">Login</Link></div>
                 </div>
             </div>
-            <div className="illustration">
+            <div className="illustration" data-aos="fade-left">
                 <img src="project-img.jpg" alt=""/>
             </div>
         </section>
