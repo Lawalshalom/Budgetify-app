@@ -4,8 +4,8 @@ import { Link, Redirect } from "react-router-dom";
 
 const Budget = (props) => {
 
-    const [budgetData, setBudgetData] = useState(null);
     const [redirect, setRedirect] = useState(null);
+    let budgetData;
 
     useEffect(() => {
     const toggleBtn=document.querySelector(".toggle-btn");
@@ -44,30 +44,36 @@ const Budget = (props) => {
 
     if (props.user === null) setRedirect("/login");
 
+    const Params = {
+        headers: {
+            "Content-type": "application/JSON",
+        },
+        method: "GET",
+        user: props.user
+    };
     async function getBudgetData(){
-        const res = await fetch("https://budgetify20.herokuapp.com/api/budget", {method: "GET"});
-        console.log(res);
+        const res = await fetch("https://budgetify20.herokuapp.com/api/budget", Params);
         const data = await res.json();
-        setBudgetData(data);
+        console.log(data);
     };
     getBudgetData().catch(err => {
         console.log(err);
     })
     console.log(budgetData);
 
-   var ctx = document.getElementById("barChart").getContext('2d');
+   const ctx = document.getElementById("barChart").getContext('2d');
     new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: "data",
+      labels: ["Salaries", "Food", "Transportation", "Internet", "Water"],
       datasets: [{
-        label: 'Population',
-        data: [1, 2, 4, 5],
+        label: 'Budget',
+        data: [65040, 7050, 6550, 5008, 9008],
         backgroundColor: "rgba(255,0,0,1)",
         color: "#485281",
       }]
     }
-    });
+    }, []);
 
     }, [budgetData, props.user])
     if (redirect === null){
@@ -101,11 +107,11 @@ const Budget = (props) => {
                         <h5>Welcome, Femi Lawal</h5>
                         <div className="amounts">
                            <h6>Total Allocation</h6>
-                            <p>#200,000</p>
+                            <p>#284,470</p>
                         </div>
                         <div className="amounts two">
                            <h6>Unallocated</h6>
-                            <p>#34,000</p>
+                            <p>#44,980</p>
                         </div>
                         <div className="monthly">
                             <div className="monthly-title">
@@ -121,7 +127,8 @@ const Budget = (props) => {
                                         <div className="progress-bar" role="progressbar"
                                             style={{width: "25%"}} aria-valuenow="25"
                                             aria-valuemin="0" aria-valuemax="100">
-                                            25%</div>
+                                            25%
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="expense-values">
@@ -129,6 +136,87 @@ const Budget = (props) => {
                                     <p>#65,040</p>
                                 </div>
                             </div>
+
+                            <div className="expenses">
+                                <div className="expense-item">
+                                    <div className="title-edit">
+                                        <p>Food</p>
+                                        <i className="fa fa-edit"></i>
+                                    </div>
+                                    <div className="progress">
+                                        <div className="progress-bar" role="progressbar"
+                                            style={{width: "10%"}} aria-valuenow="10"
+                                            aria-valuemin="0" aria-valuemax="100">
+                                            10%
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="expense-values">
+                                    <p>#71,200</p>
+                                    <p>#7,050</p>
+                                </div>
+                            </div>
+
+                            <div className="expenses">
+                                <div className="expense-item">
+                                    <div className="title-edit">
+                                        <p>Transportation</p>
+                                        <i className="fa fa-edit"></i>
+                                    </div>
+                                    <div className="progress">
+                                        <div className="progress-bar" role="progressbar"
+                                            style={{width: "30%"}} aria-valuenow="30"
+                                            aria-valuemin="0" aria-valuemax="100">
+                                            30%
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="expense-values">
+                                    <p>#22,200</p>
+                                    <p>#6,550</p>
+                                </div>
+                            </div>
+
+                            <div className="expenses">
+                                <div className="expense-item">
+                                    <div className="title-edit">
+                                        <p>Internet</p>
+                                        <i className="fa fa-edit"></i>
+                                    </div>
+                                    <div className="progress">
+                                        <div className="progress-bar" role="progressbar"
+                                            style={{width: "46%"}} aria-valuenow="46"
+                                            aria-valuemin="0" aria-valuemax="100">
+                                            46%
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="expense-values">
+                                    <p>#109,800</p>
+                                    <p>#55,008</p>
+                                </div>
+                            </div>
+
+                            <div className="expenses">
+                                <div className="expense-item">
+                                    <div className="title-edit">
+                                        <p>Shopping</p>
+                                        <i className="fa fa-edit"></i>
+                                    </div>
+                                    <div className="progress">
+                                        <div className="progress-bar" role="progressbar"
+                                            style={{width: "55%"}} aria-valuenow="55"
+                                            aria-valuemin="0" aria-valuemax="100">
+                                            55%
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="expense-values">
+                                    <p>#22,800</p>
+                                    <p>#9,008</p>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                     <div className="visualizations">
